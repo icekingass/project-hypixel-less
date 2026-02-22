@@ -164,7 +164,7 @@ while flag:
             minescript.player_press_attack(True)
             HOLDING = True
             temp = minescript.player_get_targeted_block(PLAYER_REACH)
-            while temp is not None and (temp[3].__contains__("diorite") or temp[3].__contains__("prismarine") or temp[3].__contains__("gray_wool") or temp[3].__contains__("light_blue_wool") or temp[3].__contains__("cyan_terracotta")) and HOLDING:
+            while temp is not None and (str(temp[3]).__contains__("diorite") or str(temp[3]).__contains__("prismarine") or str(temp[3]).__contains__("gray_wool") or str(temp[3]).__contains__("light_blue_wool") or str(temp[3]).__contains__("cyan_terracotta")) and HOLDING:
                 temp = minescript.player_get_targeted_block(PLAYER_REACH)
                 time.sleep(0.01)
             temp = minescript.get_block(final_block_position[0], final_block_position[1], final_block_position[2])

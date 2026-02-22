@@ -1,5 +1,24 @@
 import minescript, math, random, time
 
+def smooth_look_at(yaw : float, pitch : float):
+    orientation = minescript.player_orientation()
+
+    delta_yaw = yaw - orientation[0]
+    delta_pitch = pitch - orientation[1]
+
+    angle_mag = math.sqrt(delta_yaw**2 + delta_pitch**2)
+    steps = int(max(15, min(40, angle_mag * 0.4)))
+
+    for i in range(steps + 1):
+        progress = i / steps
+        ease = progress * progress * (3 - 2 * progress)
+
+        yaw = orientation[0] + delta_yaw * ease
+        pitch = orientation[1] + delta_pitch * ease
+
+        minescript.player_set_orientation(yaw, pitch)
+        time.sleep(0.005 + random.uniform(-0.001, 0.001))
+
 def smooth_look_at_pos(block_pos: list):
     player_pos = minescript.player_position()
     player_pos[1] += 1.62
