@@ -51,6 +51,7 @@ holding = False
 found = False
 close = False
 crouching = False
+use_crouch = True
 minescript.player_press_sprint(True)
 while flag:
     found = False
@@ -70,15 +71,18 @@ while flag:
     if target_entity is not None:
         found = True
         smooth_look.smooth_look_at_entity([target_entity.position[0], target_entity.position[1] - 0.5, target_entity.position[2]])
-        if get_distance(list(player_pos), list(target_entity.position)) < 4.5 + random.uniform(-0.25, 0.25):
-            if not crouching:
-                minescript.player_press_sneak(True)
-                crouching = True
-        else:
-            if crouching:
-                minescript.player_press_sneak(False)
-                crouching = False
-        if minescript.player_get_targeted_entity(PLAYER_ATTACK_REACH) is None:
+        
+        if use_crouch:
+            if get_distance(list(player_pos), list(target_entity.position)) < 4.5 + random.uniform(-0.25, 0.25):
+                if not crouching:
+                    minescript.player_press_sneak(True)
+                    crouching = True
+            else:
+                if crouching:
+                    minescript.player_press_sneak(False)
+                    crouching = False
+
+        if get_distance(list(player_pos), list(target_entity.position)) >= PLAYER_ATTACK_REACH:
             minescript.player_press_forward(True)
             holding = True
         else:
@@ -90,7 +94,7 @@ while flag:
             minescript.player_press_forward(True)
             holding = True
             found = True
-            if crouching:
+            if crouching and use_crouch:
                 minescript.player_press_sneak(False)
                 crouching = False
         else:
