@@ -102,7 +102,7 @@ def smooth_look_at_entity(entity_pos : list[float]):
         return
 
     angle_mag = math.sqrt(delta_yaw**2 + delta_pitch**2)
-    steps = int(max(5, min(15, angle_mag * 0.5)))
+    steps = int(max(5, min(15, angle_mag * 0.4)))
 
     for i in range(steps + 1):
         progress = i / steps
