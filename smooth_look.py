@@ -115,4 +115,4 @@ def smooth_look_at_entity(entity_pos : list[float]):
         pitch += random.uniform(-0.1, 0.1)
 
         minescript.player_set_orientation(yaw, pitch)
-        time.sleep(0.001 + random.uniform(-0.001, 0.001))
+        time.sleep(random.uniform(0, 0.001))
