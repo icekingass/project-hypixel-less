@@ -13,3 +13,7 @@ __pycache__/
 
 # Config (optional if sensitive)
 config.txt
+
+# Minescript files
+system/
+blockpacks/
