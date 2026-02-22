@@ -83,6 +83,7 @@ def check_for_entities():
             if HOLDING:
                 minescript.player_press_attack(False)
                 minescript.echo("Entity detected")
+                time.sleep(0.1)
 
 def get_distance(pos_1 : list[float], pos_2 : list[float]) -> float:
     return math.sqrt((pos_1[0] - pos_2[0])**2 + (pos_1[1] - pos_2[1])**2 + (pos_1[2] - pos_2[2])**2)
